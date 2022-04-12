@@ -30,6 +30,22 @@
           ]
         }
       ]
+    },
+    {
+      "endpoint": "/v1/login",
+      "input_query_strings": ["code"],
+      "method": "GET",
+      "output_encoding": "json",
+      "backend": [
+        {
+          "url_pattern": "/auth/getToken",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://auth-service:3000"
+          ]
+        }
+      ]
     }
   ]
 }
