@@ -22,7 +22,7 @@
           ]
         },
         {
-          "url_pattern": "/user",
+          "url_pattern": "/",
           "encoding": "json",
           "method": "GET",
           "host": [
@@ -33,7 +33,9 @@
     },
     {
       "endpoint": "/v1/login",
-      "input_query_strings": ["code"],
+      "input_query_strings": [
+        "code"
+      ],
       "method": "GET",
       "output_encoding": "json",
       "backend": [
@@ -50,18 +52,43 @@
     {
       "endpoint": "/protected",
       "extra_config": {
-          "auth/validator": {
-              "alg": "RS256",
-              "jwk_url": "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_mlQ7gDO7y/.well-known/jwks.json",
-              "operation_debug": true,
-              "key_identify_strategy": "kid"
-          }
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_mlQ7gDO7y/.well-known/jwks.json",
+          "operation_debug": true,
+          "key_identify_strategy": "kid"
+        }
       },
       "backend": [
-          {
-            "host":["http://localhost:8080"],
-            "url_pattern": "/__health"
-          }
+        {
+          "host": [
+            "http://localhost:8080"
+          ],
+          "url_pattern": "/__health"
+        }
+      ]
+    },
+    {
+      "endpoint": "/preferences",
+      "method": "GET",
+      "output_encoding": "json",
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_mlQ7gDO7y/.well-known/jwks.json",
+          "operation_debug": true,
+          "key_identify_strategy": "kid"
+        }
+      },
+      "backend": [
+        {
+          "host": [
+            "http://user-service:3000"
+          ],
+          "url_pattern": "/preference/{JWT.sub}",
+          "method": "GET",
+          "encoding": "json"
+        }
       ]
     }
   ]
