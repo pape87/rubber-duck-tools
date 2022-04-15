@@ -9,29 +9,6 @@
   "port": 8080,
   "endpoints": [
     {
-      "endpoint": "/v1/status",
-      "method": "GET",
-      "output_encoding": "json",
-      "backend": [
-        {
-          "url_pattern": "/auth",
-          "encoding": "json",
-          "method": "GET",
-          "host": [
-            "http://auth-service:3000"
-          ]
-        },
-        {
-          "url_pattern": "/",
-          "encoding": "json",
-          "method": "GET",
-          "host": [
-            "http://user-service:3000"
-          ]
-        }
-      ]
-    },
-    {
       "endpoint": "/v1/login",
       "input_query_strings": [
         "code"
