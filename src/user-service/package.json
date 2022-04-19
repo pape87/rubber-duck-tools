@@ -23,8 +23,6 @@
     "@nestjs/common": "^8.1.1",
     "@nestjs/core": "^8.1.1",
     "@nestjs/platform-express": "^8.1.1",
-    "@types/mongodb": "^4.0.7",
-    "@types/mongoose": "^5.11.97",
     "mongodb": "^4.5.0",
     "mongoose": "^6.3.0",
     "reflect-metadata": "^0.1.13",

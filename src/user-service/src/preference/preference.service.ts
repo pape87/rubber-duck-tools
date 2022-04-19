@@ -1,17 +1,22 @@
 import { Injectable } from "@nestjs/common";
-import { Preference } from "src/model/preference";
+import { model, connect } from "mongoose";
 
-const pref = {
-  "7bbf7830-f3f0-4ac0-9e12-3def63c4ef8a": {
-    language: "en",
-    theme: "dark"
-  } as Preference,
-  "bar": {} as Preference,
-};
+import { Preference } from "src/models/preference";
+import { User, userSchema } from "src/models/user";
 
 @Injectable()
 export class PreferenceService {
-  getPreferenceByUserId(id: string): Preference {
-    return pref[id];
+  private UserModel = model<User>("User", userSchema);
+
+  async getPreferenceByUserId(id: string): Promise<Preference> {
+    await connect("mongodb://root:Foobar1!@user-service-db:27017/user-service?authSource=admin");
+
+    return await this.UserModel.findOne({ id });
+  }
+
+  async createOrUpdatePreference(id: string, preferences: Preference): Promise<Preference> {
+    await connect("mongodb://root:Foobar1!@user-service-db:27017/user-service?authSource=admin");
+
+    return await this.UserModel.findOneAndUpdate({ id }, { preferences }, { new: true, upsert: true, setDefaultsOnInsert: true }).lean();
   }
 }
