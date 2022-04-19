@@ -12,6 +12,7 @@ export class PreferenceController {
 
   @Get("/:id")
   async getPreference(@Param("id") id): Promise<Preference> {
+    console.log("foooooooo", id);
     return await this.preferenceService.getPreferenceByUserId(id);
   }
 

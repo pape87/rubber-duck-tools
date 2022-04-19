@@ -67,6 +67,29 @@
           "encoding": "json"
         }
       ]
+    },
+    {
+      "endpoint": "/preferences",
+      "method": "POST",
+      "output_encoding": "json",
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "jwk_url": "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_mlQ7gDO7y/.well-known/jwks.json",
+          "operation_debug": true,
+          "key_identify_strategy": "kid"
+        }
+      },
+      "backend": [
+        {
+          "host": [
+            "http://user-service:3000"
+          ],
+          "url_pattern": "/preference/{JWT.sub}",
+          "method": "POST",
+          "encoding": "json"
+        }
+      ]
     }
   ]
 }

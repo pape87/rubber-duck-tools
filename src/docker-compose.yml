@@ -15,6 +15,26 @@ services:
     restart: unless-stopped
     ports:
       - 3002:3000
+    depends_on:
+      - user-service-db
+      - user-service-db-explorer
+
+  user-service-db:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: Foobar1!
+
+  user-service-db-explorer:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: Foobar1!
+      ME_CONFIG_MONGODB_URL: mongodb://root:Foobar1!@user-service-db:27017/
 
   api-gateway:
     image: devopsfaith/krakend:2
