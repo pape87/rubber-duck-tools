@@ -7,6 +7,8 @@ services:
     restart: unless-stopped
     ports:
       - 3001:3000
+    depends_on:
+      - api-gateway
 
   user-service:
     build: 
@@ -18,6 +20,7 @@ services:
     depends_on:
       - user-service-db
       - user-service-db-explorer
+      - api-gateway
 
   user-service-db:
     image: mongo
@@ -37,14 +40,9 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://root:Foobar1!@user-service-db:27017/
 
   api-gateway:
-    image: devopsfaith/krakend:2
-    volumes:
-      - ./api-gateway:/etc/krakend
+    build: 
+      context: ./api-gateway
+      dockerfile: ./Dockerfile
     ports:
       - "8080:8080"
-    command: ["run", "-d", "-c", "/etc/krakend/krakend.json"]
-    depends_on:
-      - auth-service
-      - user-service
-
 

@@ -2,17 +2,15 @@
   "$schema": "https://www.krakend.io/schema/v3.json",
   "version": 3,
   "extra_config": {},
-  "timeout": "3000ms",
-  "cache_ttl": "300s",
+  "timeout":  {{ .config.timeout }},
+  "cache_ttl":  {{ .config.cache_ttl }},
   "output_encoding": "json",
   "name": "rubber-duck-tools",
-  "port": 8080,
+  "port": {{ .config.port }},
   "endpoints": [
     {
       "endpoint": "/v1/login",
-      "input_query_strings": [
-        "code"
-      ],
+      "input_query_strings": ["code"],
       "method": "GET",
       "output_encoding": "json",
       "backend": [
@@ -20,27 +18,18 @@
           "url_pattern": "/auth/getToken",
           "encoding": "json",
           "method": "GET",
-          "host": [
-            "http://auth-service:3000"
-          ]
+          "host": ["http://auth-service:3000"]
         }
       ]
     },
     {
       "endpoint": "/protected",
       "extra_config": {
-        "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_mlQ7gDO7y/.well-known/jwks.json",
-          "operation_debug": true,
-          "key_identify_strategy": "kid"
-        }
+        "auth/validator": {{ marshal .auth }}
       },
       "backend": [
         {
-          "host": [
-            "http://localhost:8080"
-          ],
+          "host": ["http://localhost:8080"],
           "url_pattern": "/__health"
         }
       ]
@@ -50,18 +39,11 @@
       "method": "GET",
       "output_encoding": "json",
       "extra_config": {
-        "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_mlQ7gDO7y/.well-known/jwks.json",
-          "operation_debug": true,
-          "key_identify_strategy": "kid"
-        }
+        "auth/validator": {{ marshal .auth }}
       },
       "backend": [
         {
-          "host": [
-            "http://user-service:3000"
-          ],
+          "host": ["http://user-service:3000"],
           "url_pattern": "/preference/{JWT.sub}",
           "method": "GET",
           "encoding": "json"
@@ -73,18 +55,11 @@
       "method": "POST",
       "output_encoding": "json",
       "extra_config": {
-        "auth/validator": {
-          "alg": "RS256",
-          "jwk_url": "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_mlQ7gDO7y/.well-known/jwks.json",
-          "operation_debug": true,
-          "key_identify_strategy": "kid"
-        }
+        "auth/validator": {{ marshal .auth }}
       },
       "backend": [
         {
-          "host": [
-            "http://user-service:3000"
-          ],
+          "host": ["http://user-service:3000"],
           "url_pattern": "/preference/{JWT.sub}",
           "method": "POST",
           "encoding": "json"
