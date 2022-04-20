@@ -8,6 +8,8 @@ services:
     restart: unless-stopped
     ports:
       - 3000:3000
+    environment:
+      - CONNECTION_STRING=mongodb://root:Foobar1!@user-service-db:27017/user-service?authSource=admin
 
   user-service-db:
     image: mongo

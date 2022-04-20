@@ -9,13 +9,13 @@ export class PreferenceService {
   private UserModel = model<User>("User", userSchema);
 
   async getPreferenceByUserId(id: string): Promise<Preference> {
-    await connect("mongodb://root:Foobar1!@user-service-db:27017/user-service?authSource=admin");
+    await connect(process.env.CONNECTION_STRING);
 
     return await this.UserModel.findOne({ id });
   }
 
   async createOrUpdatePreference(id: string, preferences: Preference): Promise<Preference> {
-    await connect("mongodb://root:Foobar1!@user-service-db:27017/user-service?authSource=admin");
+    await connect(process.env.CONNECTION_STRING);
 
     return await this.UserModel.findOneAndUpdate({ id }, { preferences }, { new: true, upsert: true, setDefaultsOnInsert: true }).lean();
   }
