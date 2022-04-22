@@ -1,8 +1,14 @@
 {
   "$schema": "https://www.krakend.io/schema/v3.json",
   "version": 3,
-  "extra_config": {},
-  "timeout":  {{ .config.timeout }},
+  "extra_config": {
+    "security/cors": {
+      "allow_origins": [
+        "*"
+      ]
+    }    
+  },
+  "timeout":  "5s",
   "cache_ttl":  {{ .config.cache_ttl }},
   "output_encoding": "json",
   "name": "rubber-duck-tools",
