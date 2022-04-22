@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from "@angular/router";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
-import { RouteNames } from '../routes/routes';
+import { RouteNames } from "../routes/routes";
 // import { AuthQuery } from '../../_domain/auth/auth.query';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class DashboardGuard implements CanActivate {
   constructor(private router: Router) { }
 
@@ -20,7 +20,7 @@ export class DashboardGuard implements CanActivate {
   }
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class LoginGuard implements CanActivate {
   constructor(private router: Router) { }
   

@@ -5,7 +5,7 @@ import { firstValueFrom } from "rxjs";
 import { ApiBaseService } from "src/app/_core/api-base-service";
 import { AuthModel } from "./auth.model";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class AuthService extends ApiBaseService {
 
   constructor(

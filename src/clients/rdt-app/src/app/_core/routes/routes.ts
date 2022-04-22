@@ -1,7 +1,7 @@
 export enum RouteNames {
-  public = 'public',
+  public = "public",
   home = "home",
-  access = 'access',
-  login = 'login',
-  dashboard = 'dashboard'
+  access = "access",
+  login = "login",
+  dashboard = "dashboard"
 }
