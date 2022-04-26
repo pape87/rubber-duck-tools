@@ -13,7 +13,7 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void { }
 
   public goToLogin() {
-    window.location.href = "https://rdt-auth.auth.eu-central-1.amazoncognito.com/login?client_id=2rf24huet112134fk74kroif9s&response_type=code&scope=email+openid+profile&redirect_uri=http://localhost:3000/access/login"
+    window.location.href = "https://rdt-auth.auth.eu-central-1.amazoncognito.com/login?client_id=2rf24huet112134fk74kroif9s&response_type=code&scope=email+openid+profile&redirect_uri=http://localhost:4200/access/login"
   }
 
 }

@@ -1,4 +1,4 @@
-export interface AuthModel {
+export interface Session {
   access_token: string;
   expires_in: number;
   id_token: string;

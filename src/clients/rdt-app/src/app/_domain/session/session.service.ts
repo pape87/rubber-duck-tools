@@ -3,10 +3,10 @@ import { Injectable } from "@angular/core";
 import { firstValueFrom } from "rxjs";
 
 import { ApiBaseService } from "src/app/_core/api-base-service";
-import { AuthModel } from "./auth.model";
+import { Session } from "./session.model";
 
 @Injectable({ providedIn: "root" })
-export class AuthService extends ApiBaseService {
+export class SessionService extends ApiBaseService {
 
   constructor(
     private http: HttpClient
@@ -14,8 +14,8 @@ export class AuthService extends ApiBaseService {
     super("");
   }
 
-  async signIn(code: string): Promise<AuthModel> {
-    const response = await this.http.get<AuthModel>(`${this.url}/v1/login`, { params: { code } });
+  async signIn(code: string): Promise<Session> {
+    const response = await this.http.get<Session>(`${this.url}/v1/login`, { params: { code } });
 
     return await firstValueFrom(response);
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { AuthService } from "src/app/_domain/auth/auth.service";
+import { SessionService } from "src/app/_domain/session/session.service";
+import { SessionStore } from "src/app/_domain/session/session.store";
 
 @Component({
   selector: "app-login-page",
@@ -9,13 +10,13 @@ import { AuthService } from "src/app/_domain/auth/auth.service";
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private authService: AuthService) { }
+  constructor(private route: ActivatedRoute, private sessionService: SessionService, private sessionStore: SessionStore) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(async (params) => {
-      const response = await this.authService.signIn(params["code"]);
-
-      console.log(response);
+      const response = await this.sessionService.signIn(params["code"]);
+      if (response)
+        this.sessionStore.update(response);
     });
 
   }
