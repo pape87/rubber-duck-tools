@@ -1,0 +1,4 @@
+<div *ngIf="token; else loginTemplate">Hello {{ token.id_token }}!</div>
+<ng-template #loginTemplate>
+  <button>login</button>
+</ng-template>
