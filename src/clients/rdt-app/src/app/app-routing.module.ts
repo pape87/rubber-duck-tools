@@ -23,7 +23,8 @@ const routes: Routes = [
     path: RouteNames.dashboard,
     loadChildren: () => import("./pages/dashboard/dashboard.module").then(m => m.DashboardModule),
     canActivate: [DashboardGuard]
-  }
+  },
+  { path: "**", redirectTo: RouteNames.public }
 ];
 
 @NgModule({

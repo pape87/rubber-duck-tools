@@ -1,1 +1,15 @@
-<div class="user-component">Hello {{ user?.username }}!</div>
+<button mat-button color="secondary" class="user-component" [matMenuTriggerFor]="menu">
+  <span class="mat-button-wrapper"
+    >Hello {{ user?.username }}!
+    <mat-icon
+      role="img"
+      class="mat-icon notranslate material-icons mat-icon-no-color"
+      aria-hidden="true"
+      data-mat-icon-type="font"
+      >arrow_drop_down</mat-icon
+    >
+  </span>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="signOut()">Sign Out</button>
+</mat-menu>

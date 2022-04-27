@@ -20,5 +20,9 @@ export class SessionService extends ApiBaseService {
     return await firstValueFrom(response);
   }
 
+  async signOut(): Promise<void> {
+    await this.http.get<void>(`${this.url}/v1/logout`);
+  }
+
 
 }
