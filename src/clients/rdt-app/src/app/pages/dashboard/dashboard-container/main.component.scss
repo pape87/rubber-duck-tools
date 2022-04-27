@@ -1,0 +1,30 @@
+:host {
+  .no-padding {
+      padding: 0;
+  }
+  .title {
+      padding: 0 20px;
+  }
+  .spacer {
+      flex: 1;
+  }
+  .big-icon {
+      display: block;
+      font-size: 40px;
+  }
+  .flexed {
+      display: flex;
+  }
+
+  .dashboard {
+      width: 100%;
+      flex: 1;
+      overflow: hidden;
+      .drawer {
+          height: 100%;
+          width: 300px;
+          overflow-x: hidden;
+          overflow-y: scroll;
+      }
+  }
+}
