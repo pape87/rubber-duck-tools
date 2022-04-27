@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { Subscription, tap } from "rxjs";
-import { Session, SessionToken } from "src/app/_domain/session/session.model";
-import { SessionQuery } from "src/app/_domain/session/session.query";
+import { Component, Input, OnInit } from "@angular/core";
+import { Observable } from "rxjs";
+
+import {  User } from "src/app/_domain/session/session.model";
 
 @Component({
   selector: "app-user",
@@ -10,18 +10,14 @@ import { SessionQuery } from "src/app/_domain/session/session.query";
 })
 export class UserComponent implements OnInit {
 
-  private subscription: Subscription | null = null;
-  private token$ = this.session.select();
-  
-  public token: SessionToken | null = null;
+  @Input()
+  public user: User | undefined;
 
 
-  constructor(private session: SessionQuery) { }
+  constructor() { }
 
+  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit(): void {
-    this.subscription = this.session.token$.pipe(tap((token) => {
-      this.token = token;
-    })).subscribe();
   }
 
 }

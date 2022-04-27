@@ -11,6 +11,7 @@ import { MatButtonModule } from "@angular/material/button";
 
 import { RouteNames } from "../../_core/routes/routes";
 import { MainComponent } from "./dashboard-container/main.component";
+import { UserModule } from "src/app/components/user/user.module";
 
 const routes: Routes = [
   {
@@ -45,7 +46,8 @@ const routes: Routes = [
     MatListModule,
     MatIconModule,
     MatButtonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    UserModule
   ],
   exports: [
     RouterModule

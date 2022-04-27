@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { RouteNames } from "src/app/_core/routes/routes";
 import { SessionService } from "src/app/_domain/session/session.service";
 import { SessionStore } from "src/app/_domain/session/session.store";
+import decode from "jwt-decode";
 
 @Component({
   selector: "app-login-page",
@@ -17,7 +18,8 @@ export class LoginPageComponent implements OnInit {
     this.route.queryParams.subscribe(async (params) => {
       const response = await this.sessionService.signIn(params["code"]);
       if (response) {
-        this.sessionStore.update({ token: response });
+        const decodedToken = decode(response.access_token);
+        this.sessionStore.update({ token: response, user: { username: (decodedToken as any).username, groups:(decodedToken as any)["cognito:groups"] } });
         this.router.navigateByUrl(RouteNames.dashboard);
       } else {
         this.router.navigateByUrl(RouteNames.public);

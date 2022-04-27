@@ -6,7 +6,12 @@ export interface SessionToken {
   token_type: string;
 }
 
+export interface User {
+  username: string;
+  groups: string[];
+}
 export interface Session {
   token: SessionToken;
+  user: User;
   rememberMe: boolean;
 }
