@@ -1,5 +1,28 @@
-<mat-toolbar color="primary" class="centered">
-  <span class="title">Rubber Duck Tools</span>
-  <span class="spacer"></span>
-</mat-toolbar>
-<p>main works!</p>
+<div class="page-wrapper">
+  <mat-toolbar color="primary" class="centered">
+    <!-- <button mat-icon-button color="primary" (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button> -->
+    <button mat-icon-button color="secondary" (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="title">Rubber Duck Tools</span>
+    <span class="spacer"></span>
+  </mat-toolbar>
+  <mat-drawer-container class="dashboard">
+    <mat-drawer #drawer class="drawer" mode="side" opened autosize>
+      <mat-nav-list role="navigation">
+        <ng-container *ngFor="let item of menuItems">
+          <a mat-list-item class="item" [routerLink]="[item.link]">
+            {{ item.name }}
+          </a>
+        </ng-container>
+      </mat-nav-list>
+    </mat-drawer>
+    <mat-drawer-content>
+      <div class="dashboard-page">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

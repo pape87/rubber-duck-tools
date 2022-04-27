@@ -1,7 +1,13 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { MatToolbarModule } from "@angular/material/toolbar";
 import { RouterModule, Routes } from "@angular/router";
+
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatListModule } from "@angular/material/list";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
+
 
 import { RouteNames } from "../../_core/routes/routes";
 import { MainComponent } from "./dashboard-container/main.component";
@@ -13,11 +19,15 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        redirectTo: RouteNames.dashboard,
+        redirectTo: RouteNames.dhome,
         pathMatch: "full"
       },
       {
-        path: RouteNames.dashboard,
+        path: RouteNames.dhome,
+        loadChildren: () => import("./dashboard-home/dashboard-home.module").then(m => m.DashboardHomeModule),
+      },
+      {
+        path: RouteNames.dhome2,
         loadChildren: () => import("./dashboard-home/dashboard-home.module").then(m => m.DashboardHomeModule),
       }
     ],
@@ -31,6 +41,10 @@ const routes: Routes = [
   imports: [
     CommonModule,
     MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
     RouterModule.forChild(routes)
   ],
   exports: [
@@ -38,3 +52,4 @@ const routes: Routes = [
   ]
 })
 export class DashboardModule { }
+

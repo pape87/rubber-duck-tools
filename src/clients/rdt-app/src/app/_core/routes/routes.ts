@@ -3,5 +3,7 @@ export enum RouteNames {
   home = "home",
   access = "access",
   login = "login",
-  dashboard = "dashboard"
+  dashboard = "dashboard",
+  dhome = "dhome",
+  dhome2 = "dhome2",
 }
