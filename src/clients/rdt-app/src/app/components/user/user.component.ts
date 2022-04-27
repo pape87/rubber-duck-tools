@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Subscription, tap } from "rxjs";
-import { Session } from "src/app/_domain/session/session.model";
+import { Session, SessionToken } from "src/app/_domain/session/session.model";
 import { SessionQuery } from "src/app/_domain/session/session.query";
 
 @Component({
@@ -13,7 +13,7 @@ export class UserComponent implements OnInit {
   private subscription: Subscription | null = null;
   private token$ = this.session.select();
   
-  public token: Session | null = null;
+  public token: SessionToken | null = null;
 
 
   constructor(private session: SessionQuery) { }
