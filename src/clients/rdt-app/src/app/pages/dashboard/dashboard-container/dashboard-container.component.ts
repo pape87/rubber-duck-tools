@@ -16,7 +16,7 @@ interface MenuItems {
   templateUrl: "./dashboard-container.component.html",
   styleUrls: ["./dashboard-container.component.scss"]
 })
-export class MainComponent  implements OnInit{
+export class DashboardContainerComponent  implements OnInit{
 
   private subscription: Subscription | null = null;
   private user$ = this.session.select((state) => state.user);

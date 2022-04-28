@@ -9,13 +9,13 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 
 import { RouteNames } from "../../_core/routes/routes";
-import { MainComponent } from "./dashboard-container/dashboard-container.component";
+import { DashboardContainerComponent } from "./dashboard-container/dashboard-container.component";
 import { UserModule } from "src/app/components/user/user.module";
 
 const routes: Routes = [
   {
     path: "",
-    component: MainComponent,
+    component: DashboardContainerComponent,
     children: [
       {
         path: "",
@@ -36,7 +36,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    MainComponent,
+    DashboardContainerComponent,
   ],
   imports: [
     CommonModule,
