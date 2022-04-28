@@ -4,5 +4,5 @@ export enum RouteNames {
   access = "access",
   login = "login",
   dashboard = "dashboard",
-  userPreferences = "userPreferences"
+  user = "user"
 }

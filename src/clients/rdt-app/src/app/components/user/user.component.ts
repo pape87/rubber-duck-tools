@@ -16,6 +16,8 @@ export class UserComponent implements OnInit {
   @Input()
   public user: User | undefined;
 
+  @Input()
+  public openProfile!: () => void;
 
   constructor(private sessionStore: SessionStore, private router: Router) { }
 

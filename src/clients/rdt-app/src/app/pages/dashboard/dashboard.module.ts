@@ -8,7 +8,6 @@ import { MatListModule } from "@angular/material/list";
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 
-
 import { RouteNames } from "../../_core/routes/routes";
 import { MainComponent } from "./dashboard-container/dashboard-container.component";
 import { UserModule } from "src/app/components/user/user.module";
@@ -28,8 +27,8 @@ const routes: Routes = [
         loadChildren: () => import("./dashboard-home/dashboard-home.module").then(m => m.DashboardHomeModule),
       },
       {
-        path: RouteNames.userPreferences,
-        loadChildren: () => import("./dashboard-home/dashboard-home.module").then(m => m.DashboardHomeModule),
+        path: RouteNames.user,
+        loadChildren: () => import("./user/user.module").then(m => m.UserModule),
       }
     ],
   }
