@@ -10,7 +10,7 @@ import { MatButtonModule } from "@angular/material/button";
 
 
 import { RouteNames } from "../../_core/routes/routes";
-import { MainComponent } from "./dashboard-container/main.component";
+import { MainComponent } from "./dashboard-container/dashboard-container.component";
 import { UserModule } from "src/app/components/user/user.module";
 
 const routes: Routes = [
@@ -20,15 +20,15 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        redirectTo: RouteNames.dhome,
+        redirectTo: RouteNames.dashboard,
         pathMatch: "full"
       },
       {
-        path: RouteNames.dhome,
+        path: RouteNames.dashboard,
         loadChildren: () => import("./dashboard-home/dashboard-home.module").then(m => m.DashboardHomeModule),
       },
       {
-        path: RouteNames.dhome2,
+        path: RouteNames.userPreferences,
         loadChildren: () => import("./dashboard-home/dashboard-home.module").then(m => m.DashboardHomeModule),
       }
     ],

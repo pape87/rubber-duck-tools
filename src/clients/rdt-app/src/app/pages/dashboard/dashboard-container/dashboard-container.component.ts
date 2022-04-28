@@ -12,8 +12,8 @@ interface MenuItems {
 
 @Component({
   selector: "app-main",
-  templateUrl: "./main.component.html",
-  styleUrls: ["./main.component.scss"]
+  templateUrl: "./dashboard-container.component.html",
+  styleUrls: ["./dashboard-container.component.scss"]
 })
 export class MainComponent  implements OnInit{
 
@@ -23,11 +23,11 @@ export class MainComponent  implements OnInit{
 
   public menuItems: MenuItems[] = [
     {
-      link: RouteNames.dhome,
+      link: RouteNames.dashboard,
       name: "Home"
     },
     {
-      link: RouteNames.dhome2,
+      link: RouteNames.userPreferences,
       name: "Users"
     }
   ];
