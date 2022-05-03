@@ -45,4 +45,11 @@ services:
       dockerfile: ./Dockerfile
     ports:
       - "8080:8080"
+  
+  rdt-app:
+    build: 
+      context: ./clients/rdt-app
+      dockerfile: ./Dockerfile
+    ports:
+      - "4200:80"
 

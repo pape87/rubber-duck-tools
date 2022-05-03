@@ -1,0 +1,9 @@
+node_modules
+.env.staging
+.env
+.editorconfig
+.vs
+.eslintignore
+.eslintrc.js
+.gitignore
+Dockerfile
