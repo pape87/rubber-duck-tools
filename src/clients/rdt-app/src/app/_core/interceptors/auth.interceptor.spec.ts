@@ -45,8 +45,9 @@ describe("AuthInterceptor", () => {
   });
 
   it("should add an Authorization header if access_token is present", () => {
+    const access_token = "12345";
     sessionQueryMock.token$ = of({
-      access_token: "foo",
+      access_token: access_token,
       refresh_token: "bar",
       expires_in: 123,
       token_type: "Bearer",
@@ -59,5 +60,7 @@ describe("AuthInterceptor", () => {
 
     const httpRequest = httpMock.expectOne("http://foo.it/test");
     expect(httpRequest.request.headers.has("Authorization")).toEqual(true);
+    expect(httpRequest.request.headers.get("Authorization")).toEqual(`Bearer ${access_token}`);
+
   });
 });
