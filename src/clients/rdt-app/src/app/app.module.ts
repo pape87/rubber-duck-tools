@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { DashboardModule } from "./pages/dashboard/dashboard.module";
+import { HTTP_INTERCEPTOR_PROVIDERS } from "./_core/interceptors";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { DashboardModule } from "./pages/dashboard/dashboard.module";
     BrowserAnimationsModule,
     DashboardModule
   ],
-  providers: [],
+  providers: [HTTP_INTERCEPTOR_PROVIDERS],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
