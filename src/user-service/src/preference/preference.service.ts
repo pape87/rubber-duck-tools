@@ -11,10 +11,10 @@ export class PreferenceService {
   async getPreferenceByUserId(id: string): Promise<Preference> {
     await connect(process.env.CONNECTION_STRING);
 
-    return await this.UserModel.findOne({ id });
+    return await (await this.UserModel.findOne({ id })).preferences;
   }
 
-  async createOrUpdatePreference(id: string, preferences: Preference): Promise<Preference> {
+  async createOrUpdatePreference(id: string, preferences: Preference): Promise<User> {
     await connect(process.env.CONNECTION_STRING);
 
     return await this.UserModel.findOneAndUpdate({ id }, { preferences }, { new: true, upsert: true, setDefaultsOnInsert: true }).lean();
